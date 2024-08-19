@@ -86,4 +86,61 @@ public class StuGradeCalcTest {
         student.enterAssignmentScores(scanner);
         assertEquals(85.0, student.calculateAverage());
     }
+
+    @Test
+    public void testCalculateAverage_NoAssignments() {
+        StuGradeCalc student = new StuGradeCalc("John");
+        assertEquals(0, student.calculateAverage(), "Average should be 0 when no assignments are added.");
+    }
+
+    @Test
+    public void testDetermineFinalGrade_BoundaryValues() {
+        StuGradeCalc student = new StuGradeCalc("John");
+
+        student.addAssignmentScore(89);
+        student.addAssignmentScore(1); // Now average is 45
+        assertEquals('F', student.determineFinalGrade(), "Grade should be F for an average of 45.");
+
+        student = new StuGradeCalc("John");
+        student.addAssignmentScore(79);
+        assertEquals('C', student.determineFinalGrade(), "Grade should be C for an average of 79.");
+
+        student.addAssignmentScore(1); // Now average is 80
+        assertEquals('F', student.determineFinalGrade(), "Grade should be B for an average of 40.");
+
+        student = new StuGradeCalc("John");
+        student.addAssignmentScore(69);
+        assertEquals('D', student.determineFinalGrade(), "Grade should be D for an average of 69.");
+
+        student.addAssignmentScore(1); // Now average is 70
+        assertEquals('F', student.determineFinalGrade(), "Grade should be C for an average of 35.");
+
+        student = new StuGradeCalc("John");
+        student.addAssignmentScore(59);
+        assertEquals('F', student.determineFinalGrade(), "Grade should be F for an average of 59.");
+
+        student = new StuGradeCalc("John");
+        student.addAssignmentScore(60); // Now average is 60
+        assertEquals('D', student.determineFinalGrade(), "Grade should be D for an average of 60.");
+    }
+
+    @Test
+    public void testIsValidScore_NegativeScore() {
+        assertFalse(StuGradeCalc.isValidScore("-10"), "Negative score should be invalid.");
+    }
+
+    @Test
+    public void testIsValidScore_TooHighScore() {
+        assertFalse(StuGradeCalc.isValidScore("105"), "Score greater than 100 should be invalid.");
+    }
+
+    @Test
+    public void testIsValidScore_NonNumeric() {
+        assertFalse(StuGradeCalc.isValidScore("abc"), "Non-numeric score should be invalid.");
+    }
+
+    @Test
+    public void testIsValidScore_EmptyString() {
+        assertFalse(StuGradeCalc.isValidScore(""), "Empty string should be invalid.");
+    }
 }
