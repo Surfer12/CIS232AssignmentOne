@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String name = InputReader.getStudentName(scanner);
+        String name = InputReaders.getStudentName(scanner);
 
         Student student = new Student(name);
         GradeCalculator gradeCalculator = new GradeCalculator();
         ResultDisplayer resultDisplayer = new ResultDisplayer();
-        InputReader inputReader = new InputReader();
+        InputReaders inputReader = new InputReaders();
 
         inputReader.readAssignmentScores(scanner, student);
 

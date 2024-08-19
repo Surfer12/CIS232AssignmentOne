@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.NoSuchElementException;
 import java.lang.IllegalStateException;
 
-public class InputReader {
+public class InputReaders {
     public static String getStudentName(Scanner scanner) {
         String input;
         try {

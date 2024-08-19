@@ -43,7 +43,7 @@ public class StuGradeCalcTest{
       InputStream in = new ByteArrayInputStream("John Doe\n".getBytes());
       System.setIn(in);
       Scanner scanner = new Scanner(System.in);
-      assertEquals("John Doe", InputReader.getStudentName(scanner));
+      assertEquals("John Doe", InputReaders.getStudentName(scanner));
    }
 
    @Test
@@ -52,7 +52,7 @@ public class StuGradeCalcTest{
       System.setIn(in);
       Scanner scanner = new Scanner(System.in);
       Student student = new Student("John Doe");
-      InputReader enterScores = new InputReader();
+      InputReaders enterScores = new InputReaders();
       enterScores.readAssignmentScores(scanner, student);
       assertEquals(170, student.getTotalScore());
       assertEquals(2, student.getNumAssignments());
