@@ -29,6 +29,9 @@ public class InputReaders {
             }
             if (InputValidator.isValidScore(input)) {
                 student.addAssignmentScore(Integer.parseInt(input));
+                System.out.println("Valid score entry recorded.");
+                System.out.println("Total score: " + student.getTotalScore());
+                System.out.println("Number of assignments: " + student.getNumAssignments());
             }
             System.out.print("Enter assignment score (or type 'STOP' to finish inputting scores): ");
         }
